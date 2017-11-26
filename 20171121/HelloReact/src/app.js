@@ -13,6 +13,44 @@ let data = {
 		}
 	]
 };
+
+// //外层box
+// var warp = ReactDOM.render(
+// 	<div className='comment-warp' > </div> ,
+//     document.getElementById('root')
+// );
+
+// //表题组件
+// var commentTitle = ReactDOM.render(
+
+// 	<div className="title"> { data.titles || '' } </div>,
+// 	warp
+// );
+
+// //消息组件
+// var massage = ReactDOM.render(
+// 	<ul className="list" >
+// 		<li className="item" >
+// 			<div className="photo">
+// 				<img src={ data.list[0].img } />
+// 			</div>
+// 			<div className="person-info">
+// 				<div className="name">
+// 					{ data.list[0].name }
+// 				</div>
+// 				<div className="">
+// 					{ data.list[0].texts }
+// 				</div>
+// 				<div>
+// 					<a  className="btn" href='javascript:;' >回复</a>
+// 				</div>
+// 			</div>
+// 			{ massage }
+// 		</li> 		    		
+// 	</ul>,
+// 	commentTitle
+// );
+
     
 ReactDOM.render(
     <div className='comment-warp' > 	    
@@ -44,10 +82,10 @@ ReactDOM.render(
     document.getElementById('root')
 );   
 
-//ReactDOM.render(
+// ReactDOM.render(
 //  <div className='main' data-a='1' data-bb={ 2 + 3 } style={ { height:'50px',fontSize:'18px' } } > <span className='fff' > { str } </span> ,World</div>,
 //  document.getElementById('root')
-//);
+// );
 
 
 /*
