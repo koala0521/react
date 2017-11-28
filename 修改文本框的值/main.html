@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./browser.js"></script>
+    <script src="./react.js"></script>
+    <script src="./react-dom.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+    <script type="text/babel">
+		
+		let data = [
+		    {id:1,content:'欢迎来到妙味课堂',inputValue:'',show:false},
+		    {id:2,content:'hello world',inputValue:'',show:false}
+		];
+		
+		class App extends React.Component{
+		  constructor(props) {
+		      super(props);
+		      this.state = {
+		          data : props.data
+		      };
+		      this.isEdit = this.isEdit.bind(this);
+		      this.create = this.create.bind(this);
+		      this.clickBtn = this.clickBtn.bind(this);
+		      this.changeValue = this.changeValue.bind(this);
+		  }
+		// 是否编辑状态
+		  isEdit(id , bl){
+		    let arr = this.state.data;
+		    this.setState({
+		        arr : arr.map( (item)=>{
+		           if (item.id === id ) {
+		               item.show = bl;
+		               //input值初始值
+		               item.inputValue = item.content;
+		           }
+		       } )
+		    });
+		  }
+		
+		  //点击取消或者保存
+		clickBtn( id , bl ){
+		    let arr = this.state.data;
+		    //确认保存
+		    if( bl ){
+		
+		      this.setState({
+		          arr : arr.map( (item)=>{
+		             if (item.id === id ) {
+		                 item.content = item.inputValue;
+		             }
+		         } )
+		      });
+		    }
+		
+		    this.isEdit(id , false);
+		    this.state.inputValue = null;
+		
+		}
+		
+		//记录input内容
+		changeValue( v , id ){
+		    let arr = this.state.data;
+		    this.setState({
+		          arr : arr.map( (item)=>{
+		             if (item.id === id ) {
+		                 item.inputValue = v;
+		             }
+		         } )
+		    });
+		
+		}
+		
+		//生成结构
+		  create(data){
+		    let arr = data.map( (item)=>{
+		
+		        if( !item.show ){
+		
+		            return(
+		              <div key={ item.id } className="show">
+		               <p className="info">{ item.content }</p>
+		               <a
+		                    href="javascript:;"
+		                    className="btn"
+		                    onClick={ ()=>this.isEdit( item.id , true ) }
+		
+		                    ></a>
+		             </div>
+		            );
+		
+		        }else {
+		
+		          return(
+		            <div key={ item.id } className="alter">
+		              <input
+		                  type="text"
+		                    value={ item.inputValue }
+		                    onChange = {
+		                        (ev)=> this.changeValue( ev.target.value , item.id )
+		                     }
+		               />
+		              <span
+		                className="sure"
+		                onClick={ ()=> this.clickBtn( item.id , true ) }
+		
+		                  >确定</span>
+		              <span
+		                className="cancel"
+		                onClick={ ()=> this.clickBtn( item.id , false ) }
+		
+		                  >取消</span>
+		            </div>
+		          );
+		        }
+		
+		    });
+		    
+		    return arr;
+		
+		  }
+		
+		  render(){
+		
+		    return  (<div className="text_i">{ this.create( this.state.data ) }</div>);
+		  }
+		
+		}
+		
+		ReactDOM.render(
+		  <div className="wrap">
+		    <div className="text">
+		
+		        <App data = { data } ></App>
+		
+		    </div>
+		  </div>,
+		  document.getElementById('root')
+		);
+
+
+    </script>
+
+</body>
+
+</html>

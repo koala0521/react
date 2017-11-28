@@ -40,11 +40,11 @@ let net = [
     {id:Math.random(), desc: '移动4G',}
 ];
 
-let data = [
+var data = [
     {id: Math.random(), sort: '品牌', data: brand, order:1 },
     {id: Math.random(), sort: '尺寸', data: size, order:2 },
     {id: Math.random(), sort: '系统', data: os, order: 3 },
     {id: Math.random(), sort: '网络', data: net, order: 4 }
 ];
 
-export default data;
+
